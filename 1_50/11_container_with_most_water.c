@@ -10,14 +10,15 @@ int maxArea(int* height, int heightSize) {
         int area = minHeight * (right - left);
         maxArea = area > maxArea ? area : maxArea;
         
-        if (height[left] > height[right]) {
+        if (height[right] == minHeight) {
             // right pointer is limitting area, move right to 
             // taller point
-            while (height[right] <= minHeight) right--;
-        } else {
+            for (;left < right && height[right] <= minHeight; right--);
+        } 
+        if (height[left] == minHeight){
             // left pointer is limitting area, move left to
             // taller point
-            while (height[left] <= minHeight) left++;
+            for (;left < right && height[left] <= minHeight; left++);
         }
     }
     
